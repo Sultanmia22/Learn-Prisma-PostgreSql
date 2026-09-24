@@ -77,3 +77,9 @@ const getStudentById = async (req: Request, res: Response) => {
         })
     }
 }
+
+export const studentController = {
+    createStudent,
+    createIdCard,
+    getStudentById
+}

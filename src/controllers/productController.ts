@@ -34,7 +34,7 @@ const createTag = async (req: Request, res: Response) => {
         message: 'Tag Create Successfully!',
         data: tag
     });
-    
+
   } catch (er: unknown) {
     if (er instanceof Error) {
       const errorMsg = er.message;
@@ -52,4 +52,4 @@ const createTag = async (req: Request, res: Response) => {
 };
 
 
-export { createProduct, createTag };
+export const proudctController = { createProduct, createTag };

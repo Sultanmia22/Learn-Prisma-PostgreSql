@@ -54,7 +54,8 @@ export const ModelName = {
   Product: 'Product',
   Tag: 'Tag',
   Student: 'Student',
-  IdCard: 'IdCard'
+  IdCard: 'IdCard',
+  Group: 'Group'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -104,6 +105,14 @@ export const IdCardScalarFieldEnum = {
 } as const
 
 export type IdCardScalarFieldEnum = (typeof IdCardScalarFieldEnum)[keyof typeof IdCardScalarFieldEnum]
+
+
+export const GroupScalarFieldEnum = {
+  id: 'id',
+  name: 'name'
+} as const
+
+export type GroupScalarFieldEnum = (typeof GroupScalarFieldEnum)[keyof typeof GroupScalarFieldEnum]
 
 
 export const SortOrder = {

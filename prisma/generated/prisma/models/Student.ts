@@ -193,12 +193,14 @@ export type StudentWhereInput = {
   id?: Prisma.IntFilter<"Student"> | number
   name?: Prisma.StringFilter<"Student"> | string
   idCard?: Prisma.XOR<Prisma.IdCardNullableScalarRelationFilter, Prisma.IdCardWhereInput> | null
+  groups?: Prisma.GroupListRelationFilter
 }
 
 export type StudentOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   idCard?: Prisma.IdCardOrderByWithRelationInput
+  groups?: Prisma.GroupOrderByRelationAggregateInput
 }
 
 export type StudentWhereUniqueInput = Prisma.AtLeast<{
@@ -208,6 +210,7 @@ export type StudentWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.StudentWhereInput | Prisma.StudentWhereInput[]
   name?: Prisma.StringFilter<"Student"> | string
   idCard?: Prisma.XOR<Prisma.IdCardNullableScalarRelationFilter, Prisma.IdCardWhereInput> | null
+  groups?: Prisma.GroupListRelationFilter
 }, "id">
 
 export type StudentOrderByWithAggregationInput = {
@@ -231,23 +234,27 @@ export type StudentScalarWhereWithAggregatesInput = {
 export type StudentCreateInput = {
   name: string
   idCard?: Prisma.IdCardCreateNestedOneWithoutStudentInput
+  groups?: Prisma.GroupCreateNestedManyWithoutStudentsInput
 }
 
 export type StudentUncheckedCreateInput = {
   id?: number
   name: string
   idCard?: Prisma.IdCardUncheckedCreateNestedOneWithoutStudentInput
+  groups?: Prisma.GroupUncheckedCreateNestedManyWithoutStudentsInput
 }
 
 export type StudentUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   idCard?: Prisma.IdCardUpdateOneWithoutStudentNestedInput
+  groups?: Prisma.GroupUpdateManyWithoutStudentsNestedInput
 }
 
 export type StudentUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
   idCard?: Prisma.IdCardUncheckedUpdateOneWithoutStudentNestedInput
+  groups?: Prisma.GroupUncheckedUpdateManyWithoutStudentsNestedInput
 }
 
 export type StudentCreateManyInput = {
@@ -292,6 +299,16 @@ export type StudentScalarRelationFilter = {
   isNot?: Prisma.StudentWhereInput
 }
 
+export type StudentListRelationFilter = {
+  every?: Prisma.StudentWhereInput
+  some?: Prisma.StudentWhereInput
+  none?: Prisma.StudentWhereInput
+}
+
+export type StudentOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder
+}
+
 export type StudentCreateNestedOneWithoutIdCardInput = {
   create?: Prisma.XOR<Prisma.StudentCreateWithoutIdCardInput, Prisma.StudentUncheckedCreateWithoutIdCardInput>
   connectOrCreate?: Prisma.StudentCreateOrConnectWithoutIdCardInput
@@ -306,13 +323,53 @@ export type StudentUpdateOneRequiredWithoutIdCardNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.StudentUpdateToOneWithWhereWithoutIdCardInput, Prisma.StudentUpdateWithoutIdCardInput>, Prisma.StudentUncheckedUpdateWithoutIdCardInput>
 }
 
+export type StudentCreateNestedManyWithoutGroupsInput = {
+  create?: Prisma.XOR<Prisma.StudentCreateWithoutGroupsInput, Prisma.StudentUncheckedCreateWithoutGroupsInput> | Prisma.StudentCreateWithoutGroupsInput[] | Prisma.StudentUncheckedCreateWithoutGroupsInput[]
+  connectOrCreate?: Prisma.StudentCreateOrConnectWithoutGroupsInput | Prisma.StudentCreateOrConnectWithoutGroupsInput[]
+  connect?: Prisma.StudentWhereUniqueInput | Prisma.StudentWhereUniqueInput[]
+}
+
+export type StudentUncheckedCreateNestedManyWithoutGroupsInput = {
+  create?: Prisma.XOR<Prisma.StudentCreateWithoutGroupsInput, Prisma.StudentUncheckedCreateWithoutGroupsInput> | Prisma.StudentCreateWithoutGroupsInput[] | Prisma.StudentUncheckedCreateWithoutGroupsInput[]
+  connectOrCreate?: Prisma.StudentCreateOrConnectWithoutGroupsInput | Prisma.StudentCreateOrConnectWithoutGroupsInput[]
+  connect?: Prisma.StudentWhereUniqueInput | Prisma.StudentWhereUniqueInput[]
+}
+
+export type StudentUpdateManyWithoutGroupsNestedInput = {
+  create?: Prisma.XOR<Prisma.StudentCreateWithoutGroupsInput, Prisma.StudentUncheckedCreateWithoutGroupsInput> | Prisma.StudentCreateWithoutGroupsInput[] | Prisma.StudentUncheckedCreateWithoutGroupsInput[]
+  connectOrCreate?: Prisma.StudentCreateOrConnectWithoutGroupsInput | Prisma.StudentCreateOrConnectWithoutGroupsInput[]
+  upsert?: Prisma.StudentUpsertWithWhereUniqueWithoutGroupsInput | Prisma.StudentUpsertWithWhereUniqueWithoutGroupsInput[]
+  set?: Prisma.StudentWhereUniqueInput | Prisma.StudentWhereUniqueInput[]
+  disconnect?: Prisma.StudentWhereUniqueInput | Prisma.StudentWhereUniqueInput[]
+  delete?: Prisma.StudentWhereUniqueInput | Prisma.StudentWhereUniqueInput[]
+  connect?: Prisma.StudentWhereUniqueInput | Prisma.StudentWhereUniqueInput[]
+  update?: Prisma.StudentUpdateWithWhereUniqueWithoutGroupsInput | Prisma.StudentUpdateWithWhereUniqueWithoutGroupsInput[]
+  updateMany?: Prisma.StudentUpdateManyWithWhereWithoutGroupsInput | Prisma.StudentUpdateManyWithWhereWithoutGroupsInput[]
+  deleteMany?: Prisma.StudentScalarWhereInput | Prisma.StudentScalarWhereInput[]
+}
+
+export type StudentUncheckedUpdateManyWithoutGroupsNestedInput = {
+  create?: Prisma.XOR<Prisma.StudentCreateWithoutGroupsInput, Prisma.StudentUncheckedCreateWithoutGroupsInput> | Prisma.StudentCreateWithoutGroupsInput[] | Prisma.StudentUncheckedCreateWithoutGroupsInput[]
+  connectOrCreate?: Prisma.StudentCreateOrConnectWithoutGroupsInput | Prisma.StudentCreateOrConnectWithoutGroupsInput[]
+  upsert?: Prisma.StudentUpsertWithWhereUniqueWithoutGroupsInput | Prisma.StudentUpsertWithWhereUniqueWithoutGroupsInput[]
+  set?: Prisma.StudentWhereUniqueInput | Prisma.StudentWhereUniqueInput[]
+  disconnect?: Prisma.StudentWhereUniqueInput | Prisma.StudentWhereUniqueInput[]
+  delete?: Prisma.StudentWhereUniqueInput | Prisma.StudentWhereUniqueInput[]
+  connect?: Prisma.StudentWhereUniqueInput | Prisma.StudentWhereUniqueInput[]
+  update?: Prisma.StudentUpdateWithWhereUniqueWithoutGroupsInput | Prisma.StudentUpdateWithWhereUniqueWithoutGroupsInput[]
+  updateMany?: Prisma.StudentUpdateManyWithWhereWithoutGroupsInput | Prisma.StudentUpdateManyWithWhereWithoutGroupsInput[]
+  deleteMany?: Prisma.StudentScalarWhereInput | Prisma.StudentScalarWhereInput[]
+}
+
 export type StudentCreateWithoutIdCardInput = {
   name: string
+  groups?: Prisma.GroupCreateNestedManyWithoutStudentsInput
 }
 
 export type StudentUncheckedCreateWithoutIdCardInput = {
   id?: number
   name: string
+  groups?: Prisma.GroupUncheckedCreateNestedManyWithoutStudentsInput
 }
 
 export type StudentCreateOrConnectWithoutIdCardInput = {
@@ -333,19 +390,108 @@ export type StudentUpdateToOneWithWhereWithoutIdCardInput = {
 
 export type StudentUpdateWithoutIdCardInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  groups?: Prisma.GroupUpdateManyWithoutStudentsNestedInput
 }
 
 export type StudentUncheckedUpdateWithoutIdCardInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  groups?: Prisma.GroupUncheckedUpdateManyWithoutStudentsNestedInput
 }
 
+export type StudentCreateWithoutGroupsInput = {
+  name: string
+  idCard?: Prisma.IdCardCreateNestedOneWithoutStudentInput
+}
+
+export type StudentUncheckedCreateWithoutGroupsInput = {
+  id?: number
+  name: string
+  idCard?: Prisma.IdCardUncheckedCreateNestedOneWithoutStudentInput
+}
+
+export type StudentCreateOrConnectWithoutGroupsInput = {
+  where: Prisma.StudentWhereUniqueInput
+  create: Prisma.XOR<Prisma.StudentCreateWithoutGroupsInput, Prisma.StudentUncheckedCreateWithoutGroupsInput>
+}
+
+export type StudentUpsertWithWhereUniqueWithoutGroupsInput = {
+  where: Prisma.StudentWhereUniqueInput
+  update: Prisma.XOR<Prisma.StudentUpdateWithoutGroupsInput, Prisma.StudentUncheckedUpdateWithoutGroupsInput>
+  create: Prisma.XOR<Prisma.StudentCreateWithoutGroupsInput, Prisma.StudentUncheckedCreateWithoutGroupsInput>
+}
+
+export type StudentUpdateWithWhereUniqueWithoutGroupsInput = {
+  where: Prisma.StudentWhereUniqueInput
+  data: Prisma.XOR<Prisma.StudentUpdateWithoutGroupsInput, Prisma.StudentUncheckedUpdateWithoutGroupsInput>
+}
+
+export type StudentUpdateManyWithWhereWithoutGroupsInput = {
+  where: Prisma.StudentScalarWhereInput
+  data: Prisma.XOR<Prisma.StudentUpdateManyMutationInput, Prisma.StudentUncheckedUpdateManyWithoutGroupsInput>
+}
+
+export type StudentScalarWhereInput = {
+  AND?: Prisma.StudentScalarWhereInput | Prisma.StudentScalarWhereInput[]
+  OR?: Prisma.StudentScalarWhereInput[]
+  NOT?: Prisma.StudentScalarWhereInput | Prisma.StudentScalarWhereInput[]
+  id?: Prisma.IntFilter<"Student"> | number
+  name?: Prisma.StringFilter<"Student"> | string
+}
+
+export type StudentUpdateWithoutGroupsInput = {
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  idCard?: Prisma.IdCardUpdateOneWithoutStudentNestedInput
+}
+
+export type StudentUncheckedUpdateWithoutGroupsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  idCard?: Prisma.IdCardUncheckedUpdateOneWithoutStudentNestedInput
+}
+
+export type StudentUncheckedUpdateManyWithoutGroupsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+}
+
+
+/**
+ * Count Type StudentCountOutputType
+ */
+
+export type StudentCountOutputType = {
+  groups: number
+}
+
+export type StudentCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  groups?: boolean | StudentCountOutputTypeCountGroupsArgs
+}
+
+/**
+ * StudentCountOutputType without action
+ */
+export type StudentCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the StudentCountOutputType
+   */
+  select?: Prisma.StudentCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * StudentCountOutputType without action
+ */
+export type StudentCountOutputTypeCountGroupsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.GroupWhereInput
+}
 
 
 export type StudentSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   name?: boolean
   idCard?: boolean | Prisma.Student$idCardArgs<ExtArgs>
+  groups?: boolean | Prisma.Student$groupsArgs<ExtArgs>
+  _count?: boolean | Prisma.StudentCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["student"]>
 
 export type StudentSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -366,6 +512,8 @@ export type StudentSelectScalar = {
 export type StudentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name", ExtArgs["result"]["student"]>
 export type StudentInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   idCard?: boolean | Prisma.Student$idCardArgs<ExtArgs>
+  groups?: boolean | Prisma.Student$groupsArgs<ExtArgs>
+  _count?: boolean | Prisma.StudentCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type StudentIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
 export type StudentIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -374,6 +522,7 @@ export type $StudentPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
   name: "Student"
   objects: {
     idCard: Prisma.$IdCardPayload<ExtArgs> | null
+    groups: Prisma.$GroupPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
@@ -773,6 +922,7 @@ readonly fields: StudentFieldRefs;
 export interface Prisma__StudentClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   idCard<T extends Prisma.Student$idCardArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Student$idCardArgs<ExtArgs>>): Prisma.Prisma__IdCardClient<runtime.Types.Result.GetResult<Prisma.$IdCardPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  groups<T extends Prisma.Student$groupsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Student$groupsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$GroupPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1213,6 +1363,30 @@ export type Student$idCardArgs<ExtArgs extends runtime.Types.Extensions.Internal
    */
   include?: Prisma.IdCardInclude<ExtArgs> | null
   where?: Prisma.IdCardWhereInput
+}
+
+/**
+ * Student.groups
+ */
+export type Student$groupsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Group
+   */
+  select?: Prisma.GroupSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Group
+   */
+  omit?: Prisma.GroupOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.GroupInclude<ExtArgs> | null
+  where?: Prisma.GroupWhereInput
+  orderBy?: Prisma.GroupOrderByWithRelationInput | Prisma.GroupOrderByWithRelationInput[]
+  cursor?: Prisma.GroupWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.GroupScalarFieldEnum | Prisma.GroupScalarFieldEnum[]
 }
 
 /**

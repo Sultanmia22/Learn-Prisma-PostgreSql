@@ -1,7 +1,8 @@
 model Student {
   id      Int     @id @default(autoincrement())
   name    String
-  idCard  IdCard?              
+  idCard  IdCard? 
+  groups Group[]             
 }
 
 model IdCard {
@@ -9,4 +10,10 @@ model IdCard {
   cardNumber String
   studentId  Int     @unique   
   student    Student @relation(fields: [studentId], references: [id], onDelete: Cascade)
+}
+
+model Group {
+  id       Int       @id @default(autoincrement())
+  name     String
+  students Student[]
 }

@@ -61,3 +61,8 @@ export type Student = Prisma.StudentModel
  * 
  */
 export type IdCard = Prisma.IdCardModel
+/**
+ * Model Group
+ * 
+ */
+export type Group = Prisma.GroupModel

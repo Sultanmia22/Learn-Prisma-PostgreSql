@@ -2,6 +2,7 @@ import type { Request, Response } from "express";
 import { prisma } from "../db.ts";
 import { date } from "zod";
 
+// Create Student Api End Point
 const createStudent = async(req: Request, res: Response) => {
     const {name} = req.body;
 
@@ -12,7 +13,7 @@ const createStudent = async(req: Request, res: Response) => {
     })
 }
 
-
+// Create Student  ID Card Api End Point
 const createIdCard = async (req: Request, res: Response) => {
     try{
 
@@ -47,7 +48,7 @@ const createIdCard = async (req: Request, res: Response) => {
     }
 }
 
-
+// Get Student Api End Point
 const getStudentById = async (req: Request, res: Response) => {
     try{
         const student = await prisma.student.findUnique({
@@ -78,8 +79,66 @@ const getStudentById = async (req: Request, res: Response) => {
     }
 }
 
+// Create student and idCard Api end Point (Nested Write)
+const createStudentWithIdCard  = async (req: Request, res: Response) => {
+    const {name,cardNumber} = req.body;
+
+    console.log("name",name,"cardNumber")
+
+    if(!name || cardNumber) {
+        return res.status(400).json({
+            success: false,
+            message: 'name and cardNumber are required!'
+        })
+    }
+
+    const student = await prisma.student.create({
+        data: {
+            name,
+            idCard: {
+                create: {
+                    cardNumber
+                }
+            }
+        },
+
+        include: {idCard: true}
+    })
+
+    res.status(200).json({
+        success: true,
+        message: 'Create Student Successfully!',
+        data: student
+    });
+}
+
+//Delete Student 
+const deleteStudent = async (req: Request, res: Response) => {
+    try{
+        const student = await prisma.student.delete({
+            where: {id: Number(req.params.id)}
+        })
+
+        res.status(200).json({
+            success: true,
+            message: "Student Delete Successfully!",
+            data: student
+        })
+    }
+    catch(er: unknown) {
+        if(er instanceof Error) {
+            res.status(500).json({
+                success: true,
+                message: er.message || 'Something went Wrong'
+            })
+        }
+    }
+} 
+
 export const studentController = {
     createStudent,
     createIdCard,
-    getStudentById
+    getStudentById,
+    createStudentWithIdCard,
+    deleteStudent
 }

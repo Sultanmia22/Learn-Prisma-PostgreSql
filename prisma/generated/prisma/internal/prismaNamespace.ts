@@ -397,6 +397,7 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 
 
 export const ModelName = {
+  Author: 'Author',
   Product: 'Product',
   Tag: 'Tag',
   Student: 'Student',
@@ -417,10 +418,84 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "product" | "tag" | "student" | "idCard" | "group"
+    modelProps: "author" | "product" | "tag" | "student" | "idCard" | "group"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
+    Author: {
+      payload: Prisma.$AuthorPayload<ExtArgs>
+      fields: Prisma.AuthorFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.AuthorFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AuthorPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.AuthorFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AuthorPayload>
+        }
+        findFirst: {
+          args: Prisma.AuthorFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AuthorPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.AuthorFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AuthorPayload>
+        }
+        findMany: {
+          args: Prisma.AuthorFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AuthorPayload>[]
+        }
+        create: {
+          args: Prisma.AuthorCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AuthorPayload>
+        }
+        createMany: {
+          args: Prisma.AuthorCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.AuthorCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AuthorPayload>[]
+        }
+        delete: {
+          args: Prisma.AuthorDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AuthorPayload>
+        }
+        update: {
+          args: Prisma.AuthorUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AuthorPayload>
+        }
+        deleteMany: {
+          args: Prisma.AuthorDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.AuthorUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.AuthorUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AuthorPayload>[]
+        }
+        upsert: {
+          args: Prisma.AuthorUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AuthorPayload>
+        }
+        aggregate: {
+          args: Prisma.AuthorAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateAuthor>
+        }
+        groupBy: {
+          args: Prisma.AuthorGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AuthorGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.AuthorCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AuthorCountAggregateOutputType> | number
+        }
+      }
+    }
     Product: {
       payload: Prisma.$ProductPayload<ExtArgs>
       fields: Prisma.ProductFieldRefs
@@ -830,6 +905,14 @@ export const TransactionIsolationLevel = runtime.makeStrictEnum({
 export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
 
+export const AuthorScalarFieldEnum = {
+  id: 'id',
+  name: 'name'
+} as const
+
+export type AuthorScalarFieldEnum = (typeof AuthorScalarFieldEnum)[keyof typeof AuthorScalarFieldEnum]
+
+
 export const ProductScalarFieldEnum = {
   id: 'id',
   name: 'name'
@@ -1085,6 +1168,7 @@ export interface PrismaClientOptionsWithAdapter extends PrismaClientBaseOptions 
  */
 export type PrismaClientOptions = PrismaClientOptionsWithAccelerateUrl | PrismaClientOptionsWithAdapter
 export type GlobalOmitConfig = {
+  author?: Prisma.AuthorOmit
   product?: Prisma.ProductOmit
   tag?: Prisma.TagOmit
   student?: Prisma.StudentOmit

@@ -1,6 +1,7 @@
 import express from 'express'
 import { studentRouter } from './studentRoutes.ts'
 import { productRouter } from './productRoutes.ts'
+import { authorRouter } from './author.routes.ts'
 
 const router = express.Router()
 
@@ -13,6 +14,11 @@ const moduleRoute = [
     {
         path: '/product',
         route: productRouter
+    },
+
+    {
+        path: '/authors',
+        route: authorRouter
     }
 ]
 

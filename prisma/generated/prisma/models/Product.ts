@@ -297,18 +297,6 @@ export type ProductOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
 }
 
-export type StringFieldUpdateOperationsInput = {
-  set?: string
-}
-
-export type IntFieldUpdateOperationsInput = {
-  set?: number
-  increment?: number
-  decrement?: number
-  multiply?: number
-  divide?: number
-}
-
 export type ProductCreateNestedManyWithoutTagsInput = {
   create?: Prisma.XOR<Prisma.ProductCreateWithoutTagsInput, Prisma.ProductUncheckedCreateWithoutTagsInput> | Prisma.ProductCreateWithoutTagsInput[] | Prisma.ProductUncheckedCreateWithoutTagsInput[]
   connectOrCreate?: Prisma.ProductCreateOrConnectWithoutTagsInput | Prisma.ProductCreateOrConnectWithoutTagsInput[]

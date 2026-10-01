@@ -8,10 +8,8 @@
  *
  * 🟢 You can import this file directly.
  */
-export type * from './models/Author.ts'
-export type * from './models/Product.ts'
-export type * from './models/Tag.ts'
-export type * from './models/Student.ts'
-export type * from './models/IdCard.ts'
-export type * from './models/Group.ts'
+export type * from './models/User.ts'
+export type * from './models/Profile.ts'
+export type * from './models/Post.ts'
+export type * from './models/Category.ts'
 export type * from './commonInputTypes.ts'

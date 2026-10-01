@@ -1,24 +1,13 @@
 import express from 'express'
-import { studentRouter } from './studentRoutes.ts'
-import { productRouter } from './productRoutes.ts'
-import { authorRouter } from './author.routes.ts'
+import { userRoute } from './user.route.ts'
+
 
 const router = express.Router()
 
 const moduleRoute = [
     {
-        path: '/student',
-        route : studentRouter
-    },
-
-    {
-        path: '/product',
-        route: productRouter
-    },
-
-    {
-        path: '/authors',
-        route: authorRouter
+        path: '/users',
+        route: userRoute
     }
 ]
 

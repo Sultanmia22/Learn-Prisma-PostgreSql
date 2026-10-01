@@ -1,8 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Get a free hosted Postgres database in seconds: `npx create-db`
-
 generator client {
   provider = "prisma-client"
   output   = "../generated/prisma"
@@ -10,4 +5,51 @@ generator client {
 
 datasource db {
   provider = "postgresql"
+}
+
+model User {
+    id Int @id @default(autoincrement())  // already indexed 
+    email String @unique  // already indexed 
+    name String
+    role Role? @default(USER)   // Set enum for role from Role enum
+    profile Profile? // realtion with profile model 
+    post Post[] // 1 to many  realtion with Post Model 
+
+    @@map("users")
+    @@index([role])  // custome index for fast query 
+}
+
+
+model Profile {
+    id Int @id @default(autoincrement())
+    bio String
+    userId Int @unique
+    user User @relation(fields: [userId], references: [id]) // relation with user 
+
+}
+ 
+ // 
+
+model Post {
+    id Int @id @default(autoincrement())
+    title String
+    createdAt DateTime @default(now())
+    updatedAt DateTime @default(now())
+    published Boolean @default(false)
+    authorId Int
+    author User @relation(fields: [authorId], references: [id])
+    categories Category[] // Many to Many Relation with Cateogry Model 
+}
+
+
+model Category {
+    id Int @id @default(autoincrement()) // Many to Many Relation with Post Model e
+    name String
+    posts Post[]
+}
+
+// Enums 
+enum Role {
+    USER
+    ADMIN
 }
